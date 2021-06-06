@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
+// import React, {useState, useEffect} from 'react';
 import { Button, makeStyles, Typography, FormControl, FormGroup, TextField } from '@material-ui/core';
 import TwitterIcon from '@material-ui/icons/Twitter';
-import firebaseApp from '../services/firebase.js';
+// import firebaseApp from '../services/firebase.js';
 import '../theme.ts';
 import '../styles/signIn.css';
 import ModalDialog from '../components/modalDialog/dialog';
