@@ -1,20 +1,23 @@
-import React from 'react';
-import {BrowserRouter, Route, Switch} from 'react-router-dom'
-import { Menu } from './components/menu';
-import {Home} from './pages/home';
-import {Profile} from './pages/profile'
+import React, {useContext} from 'react';
+import './App.css';
+import { BrowserRouter } from 'react-router-dom';
+import AppRouter from './components/AppRouter';
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Context } from "./index";
+import Loader from './components/Loader';
 
 function App() {
+  const { auth } = useContext(Context)
+  const [user, loading, error] = useAuthState(auth)
+
+  if (loading) {
+    return < Loader />
+  }
+
   return (
     <BrowserRouter>
-      <Menu />
-      <div className="container">
-        <Switch>
-          <Route path={'/'} exact component={Home}/>
-          <Route path={'/profile'} exact component={Profile}/>
-        </Switch>
-      </div>
-      </BrowserRouter>
+      <AppRouter />
+    </BrowserRouter>
   );
 }
 
