@@ -1,5 +1,5 @@
 import {LOGIN_ROUTE, HOME_ROUTE} from "./utils/consts";
-import { Home } from './pages/Home';
+import { Home } from './pages/home';
 import { SignIn } from "./pages/SignIn.tsx";
 
 export const publicRoutes = [
