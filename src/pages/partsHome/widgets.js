@@ -2,6 +2,7 @@ import React from 'react';
 import '../../styles/widgets.css';
 import { InputBase, makeStyles } from '@material-ui/core';
 import '../../theme.ts';
+import SearchIcon from '@material-ui/icons/Search';
 
 const useStylesSearchInput = makeStyles((theme) => ({
     search: {
@@ -21,8 +22,17 @@ function Widgets() {
                 type="search" fullWidth
                 placeholder="Поиск по твиттеру"
             />
+            <div>
+                <SearchIcon className="widgets_searchIcon"></SearchIcon>
+                <input type="text" placeholder="Поиск"/>
+            </div>
         </div>
     )
 }
 
 export default Widgets;
+
+
+
+
+

@@ -16,6 +16,7 @@ function TweetBox() {
             verified: true,
             text: tweetMessage,
             image: tweetImage,
+            // userId: User UID
             avatar: "https://sun9-1.userapi.com/impf/c824501/v824501032/710fb/2eSUl0b1rx8.jpg?size=951x960&quality=96&sign=932172050d7054d2b028a24e38359501&type=album"
         });
 

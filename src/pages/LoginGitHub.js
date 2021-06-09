@@ -4,20 +4,21 @@ import {Context} from "../index";
 import firebase from "firebase";
 
 
-const LoginGoogle = () => {
+const LoginGithub = () => {
     const {auth} = useContext(Context)
 
-    const login = async () => {
-        const provider = new firebase.auth.GoogleAuthProvider()
+    const loginGit = async () => {
+        const provider = new firebase.auth.GithubAuthProvider()
         const {user} = await auth.signInWithPopup(provider)
         console.log(user)
     }
 
     return (
         <Container>
-             <Button onClick={login}>Войти с помощью Google</Button>
+             <Button onClick={loginGit}>Войти с помощью GitHab</Button>
         </Container>
     );
 };
 
-export default LoginGoogle;
+export default LoginGithub;
+

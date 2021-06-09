@@ -1,2 +1,9 @@
-export const LOGIN_ROUTE = '/login'
-export const HOME_ROUTE = '/home'
+export const LOGIN_ROUTE = '/login';
+export const HOME_ROUTE = '/home';
+export const SEARCH_ROUTE = '/search';
+export const NOTIFICATION_ROUTE = '/notification';
+export const CHAT_ROUTE = '/chat';
+export const BOOKMARKS_ROUTE = '/bookmarks';
+export const LISTS_ROUTE = '/lists';
+export const PROFILE_ROUTE = '/profile';
+export const MORE_ROUTE = '/more';
