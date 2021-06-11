@@ -10,6 +10,7 @@ function Feed() {
     useEffect(() => {
         db.collection("posts").onSnapshot((snapshot) => 
             setPosts(snapshot.docs.map((doc) => doc.data()))
+            // setPosts(snapshot.docs.map((doc) => doc.data()).filter(el => el.userId === user.uid))
         );
     }, []);
 
