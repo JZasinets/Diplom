@@ -5,10 +5,10 @@ import firebase from 'firebase';
 import '../theme.ts';
 import '../styles/signIn.css';
 import ModalDialog from '../components/dialog';
-import LoginGoogle from './LoginGoogle.js';
-import LoginPassword from './LoginPassword.js';
-import SignInPassword from './SignInPassword.js';
-import LoginGithub from './LoginGitHub';
+import LoginGoogle from './login/LoginGoogle.js';
+import LoginPassword from './login/LoginPassword.js';
+import SignInPassword from './login/SignInPassword.js';
+import LoginGithub from './login/LoginGitHub';
 
 export const useStylesSignIn = makeStyles((theme) => ({
     loginSideTwitterIcon: {
@@ -41,6 +41,7 @@ export const useStylesSignIn = makeStyles((theme) => ({
 export const SignIn: React.FC = (): React.ReactElement => {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const [displayName, setDisplayName] = React.useState('');
     const classes = useStylesSignIn();
     const [visibleModal, setVisibleModal] = React.useState<'signIn' | 'signUp'>();
 
@@ -73,14 +74,15 @@ export const SignIn: React.FC = (): React.ReactElement => {
                                 <TextField
                                     className={classes.loginSideField}
                                     autoFocus
-                                    id="name"
+                                    id="displayName"
                                     label="Имя"
                                     InputLabelProps={{
                                         shrink: true,
                                     }}
                                     variant="filled"
-                                    type="name"
+                                    type="text"
                                     fullWidth
+                                    onChange={(e) => setDisplayName(e.target.value)}
                                 />
                                 <TextField
                                     className={classes.loginSideField}

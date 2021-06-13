@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {Button, Container } from "@material-ui/core";
-import {Context} from "../index";
+import {Context} from "../../index";
 import firebase from "firebase";
 
 

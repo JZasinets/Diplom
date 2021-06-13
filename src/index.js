@@ -18,7 +18,7 @@ ReactDOM.render(
           db
           }}>
           <App />
-        </Context.Provider>,
+        </Context.Provider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -1,7 +1,16 @@
-.feed {
-    flex: 0.4;
+.feed,
+.body_Search,
+.body_Bookmark,
+.body_Lists,
+.body_More,
+.body_Notification {
     border-right: 1px solid var(--twitter-backgroundcolor);
     min-width: fit-content;
+    width: 700px;
+}
+
+.feed {
+    flex: 0.4;
     overflow-y: scroll;
 }
 

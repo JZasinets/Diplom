@@ -14,15 +14,21 @@
     display: flex;
 }
 
-.tweetBox__input > input{
+.tweetBox__input > textarea,
+.tweetBox__input > textarea:focus {
     flex: 1;
-    margin-left: 20px;
-    font-size: 20px;
-    border: none;
+    margin-left: 30px;
+    font-size: 18px;
+    border: 1px solid var(--twitter-backgroundcolor);
+    width: 90%;
+    height: 70px;
 }
 
+
 .tweetBox__imageInput {
-    border: none;
+    border: 1px solid var(--twitter-backgroundcolor);
+    margin-left: 90px;
+    width: 81%;
     padding: 10px;
 }
 

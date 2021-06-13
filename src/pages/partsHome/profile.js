@@ -1,23 +1,31 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import TweetBox from './tweetBox';
 import Post from './post';
 import db from '../../services/firebase';
 import '../../styles/feed.css';
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Context } from "../../index";
+import Loader from '../../components/Loader';
 
-function Feed() {
+function ProfileTwits() {
     const [posts, setPosts] = useState([]);
+    const { auth } = useContext(Context)
+    const [user, loading, error] = useAuthState(auth);
 
     useEffect(() => {
-        db.collection("posts").orderBy("createAt", "desc").onSnapshot((snapshot) => {
-            setPosts(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }) ))
-            console.log(setPosts);
-        });
+        db.collection("posts").onSnapshot((snapshot) => 
+            setPosts(snapshot.docs.map((doc) => doc.data()).filter(el => el.userId === user.uid))
+        );
     }, []);
+  
+    if (loading) {
+      return < Loader />
+    }
 
     return (
         <div className="feed">            
             <div className="feed__header">
-                <h2>Главная</h2>
+                <h2>Профиль</h2>
             </div>
             
             <TweetBox />
@@ -30,11 +38,10 @@ function Feed() {
                 text={post.text}
                 avatar={post.avatar}
                 image={post.image}
-                key={post.Id}
             />
             ))}
         </div>
     );
 }
 
-export default Feed;
+export default ProfileTwits;

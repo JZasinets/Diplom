@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
 import { Button, Container } from "@material-ui/core";
-import { Context } from "../index";
 import firebase from "firebase";
-import '../styles/signIn.css';
-import '../theme.ts';
+import '../../styles/signIn.css';
+import '../../theme.ts';
 
 function SignInPassword({email, password}) {
     const [error, setError] = React.useState('');

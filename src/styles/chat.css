@@ -1,0 +1,61 @@
+
+.chat_area {
+    width: 70%;
+}
+
+.body_chat {
+    height: 70vh;
+    background-color: #fff;
+    overflow-y: auto;
+    border: 1px solid var(--twitter-backgroundcolor);
+    padding: 10px;
+}
+
+.body_chat,
+.message_area {
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.text_area_chat {
+    width: 60%;
+    padding-left: 30px;
+}
+
+.message_area {
+    position: fixed;
+    width: 90%;
+    height: auto;
+    padding: 3vh 3 0;
+    margin-top: 20px;
+}
+.chat_Button {
+    width: 60%;
+    text-align: right;
+    margin-top: 10px;
+}
+
+.message_container {
+    margin: 10px;
+    width: fit-content;
+    padding: 5px 20px;
+    border-radius: 5px;
+    border: 1px solid var(--twitter-backgroundcolor);
+    max-width: 60%;
+}
+
+.chat_name {
+    display: flex;
+    align-items: center;
+}
+
+.chat_user_name {
+    padding-left: 10px;
+}
+
+.chat_text {
+    background-color: white;
+    border-radius: 5px;
+    padding: 3px 5px;
+    margin-top: 5px;
+}

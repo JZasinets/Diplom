@@ -1,5 +1,5 @@
 import React, {useContext, useEffect} from 'react';
-import {Route, Switch, Redirect, useHistory} from 'react-router-dom'
+import {Route, Switch, Redirect, useHistory} from 'react-router-dom';
 import {privateRoutes, publicRoutes} from "../routes";
 import {HOME_ROUTE, LOGIN_ROUTE} from "../utils/consts";
 import {useAuthState} from "react-firebase-hooks/auth";
