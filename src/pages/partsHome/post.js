@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect, useReducer, useContext } from 'react';
 import { initState, reducer } from "../../services/reducer";
 import '../../styles/post.css';
 import { Avatar } from '@material-ui/core';
@@ -12,13 +12,16 @@ import EditIcon from '@material-ui/icons/Edit';
 import { Button } from '@material-ui/core';
 import firebase from 'firebase';
 import db from '../../services/firebase';
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Context } from "../../index";
 
-function Post({ displayName, userName, verified, text, image, avatar, userId, id }) {
+function Post({ displayName, userName, verified, text, image, avatar, userId, id, arrayLike }) {
     const [editId, setEditId] = useState('');
     const [state, dispatch] = useReducer(reducer, initState);
-    const [arrayLike, setArrayLike] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const [like, setLike] = useState(0);
+    const { auth } = useContext(Context)
+    const [user, loading, error] = useAuthState(auth);
 
     useEffect(() => {
         getData()
@@ -32,7 +35,8 @@ function Post({ displayName, userName, verified, text, image, avatar, userId, id
             const twits = docs.map(doc => ({ ...doc.data(), id: doc.id }))
                 dispatch({ type: 'GET_POSTS', data: twits })
                 console.log(twits)
-                // console.log(id)
+                
+                
         } catch (e) {
             console.error(e)
         } finally {
@@ -40,8 +44,9 @@ function Post({ displayName, userName, verified, text, image, avatar, userId, id
         }
     }
 
-    const deleteTweet = async ({ id }) => {
+    const deleteTweet = async () => {
         try {
+            console.log(id)
             await db.collection("posts").doc(id).delete()
             await getData()
             console.log('del')
@@ -49,7 +54,7 @@ function Post({ displayName, userName, verified, text, image, avatar, userId, id
             console.error(e)
             console.log('eror')
         }
-        console.log(id)
+        
     }
 
     const handleEdit = async (item) => {
@@ -65,14 +70,25 @@ function Post({ displayName, userName, verified, text, image, avatar, userId, id
         }
     }
 
-    const AddLikes = ( userId ) => {
+    const AddLikes = async () => {
 
-        if (arrayLike.includes(userId)) {
-            arrayLike.splice(userId, 1);  //удалить
+        if (arrayLike.includes(user.uid)) {
+            arrayLike.splice(user.uid, 1);  //удалить
         } else {
-            arrayLike.push(userId);
+            arrayLike.push(user.uid);
         }
-        console.log(arrayLike.length) //обновить
+
+        try {
+            await db.collection("posts").doc(id).update({
+                arrayLike: arrayLike
+            })
+
+            await getData()
+        } catch(e) {
+            console.error(e)
+        } finally {
+            setEditId('')
+        }
     }
 
 

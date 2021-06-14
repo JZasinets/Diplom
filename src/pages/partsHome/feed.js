@@ -30,7 +30,9 @@ function Feed() {
                 text={post.text}
                 avatar={post.avatar}
                 image={post.image}
-                key={post.Id}
+                key={post.id}
+                id={post.id}
+                arrayLike={post.arrayLike}
             />
             ))}
         </div>
