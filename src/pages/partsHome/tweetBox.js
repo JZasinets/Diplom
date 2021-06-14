@@ -5,15 +5,15 @@ import db from '../../services/firebase';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Context } from "../../index";
 import firebase from 'firebase';
-import { useCollectionData } from 'react-firebase-hooks/firestore'
 
 function TweetBox() {
     const [tweetMessage, setTweetMessage] = useState("");
     const [tweetImage, setTweetImage] = useState("");
     const [id, setId] = useState("");
     const [arrayLike, setArrayLike] = useState("");
-    const { auth } = useContext(Context)
-    const [user, loading, error] = useAuthState(auth);
+    const { auth } = useContext(Context);
+    const [user] = useAuthState(auth);
+    const [editId, setEditId] = useState('');
 
     const sendTweet = e => {
         e.preventDefault();
@@ -27,6 +27,7 @@ function TweetBox() {
             userId: user.uid,
             arrayLike: [],
             postId: id,
+            editId: editId,
             createAt: firebase.firestore.FieldValue.serverTimestamp(),
             avatar: "https://www.meme-arsenal.com/memes/c6c1a140ac1e472bf48bd6022e691237.jpg"
         });

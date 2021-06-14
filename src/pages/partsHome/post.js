@@ -10,14 +10,13 @@ import PublishIcon from '@material-ui/icons/Publish';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { Button } from '@material-ui/core';
-import firebase from 'firebase';
 import db from '../../services/firebase';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Context } from "../../index";
 
-function Post({ displayName, userName, verified, text, image, avatar, userId, id, arrayLike }) {
-    const [editId, setEditId] = useState('');
+function Post({ displayName, userName, verified, text, image, avatar, id, arrayLike, userId, editId }) {
     const [state, dispatch] = useReducer(reducer, initState);
+    // const [editId, setEditId] = useState('');
     const [isLoading, setIsLoading] = useState(true);
     const [like, setLike] = useState(0);
     const { auth } = useContext(Context)
@@ -33,10 +32,10 @@ function Post({ displayName, userName, verified, text, image, avatar, userId, id
                 .orderBy("createAt", "asc")
                 .get()
             const twits = docs.map(doc => ({ ...doc.data(), id: doc.id }))
-                dispatch({ type: 'GET_POSTS', data: twits })
-                console.log(twits)
-                
-                
+            dispatch({ type: 'GET_POSTS', data: twits })
+            // console.log(twits)
+
+
         } catch (e) {
             console.error(e)
         } finally {
@@ -46,34 +45,32 @@ function Post({ displayName, userName, verified, text, image, avatar, userId, id
 
     const deleteTweet = async () => {
         try {
-            console.log(id)
             await db.collection("posts").doc(id).delete()
             await getData()
-            console.log('del')
         } catch (e) {
             console.error(e)
             console.log('eror')
         }
-        
+
     }
 
-    const handleEdit = async (item) => {
+    const handleEdit = async () => {
         try {
             await db.collection("posts").doc(editId).update({
-                text: item.value
+                text: text
             })
             await getData()
         } catch (e) {
             console.error(e)
         } finally {
-            setEditId('')
+            // setEditId('')
         }
     }
 
     const AddLikes = async () => {
 
         if (arrayLike.includes(user.uid)) {
-            arrayLike.splice(user.uid, 1);  //удалить
+            arrayLike.splice(user.uid, 1);
         } else {
             arrayLike.push(user.uid);
         }
@@ -84,13 +81,12 @@ function Post({ displayName, userName, verified, text, image, avatar, userId, id
             })
 
             await getData()
-        } catch(e) {
+        } catch (e) {
             console.error(e)
         } finally {
-            setEditId('')
+            // setEditId('')
         }
     }
-
 
     return (
         <div className="post">
@@ -106,7 +102,6 @@ function Post({ displayName, userName, verified, text, image, avatar, userId, id
                                 @{userName}
                             </span>
                         </h3>
-                        {/* <EditIcon onClick={handleEdit} fontSize="small"/> */}
                         <Button onClick={handleEdit}><EditIcon fontSize="small" /></Button>
                     </div>
                     <div className="post__headerDescription">
@@ -117,10 +112,14 @@ function Post({ displayName, userName, verified, text, image, avatar, userId, id
                 <div className="post__footer">
                     <ChatBubbleOutlineIcon fontSize="small" />
                     <RepeatIcon fontSize="small" />
-                    <FavoriteBorderIcon fontSize="small" onClick={AddLikes} />
+                    <div className="likes">
+                        <FavoriteBorderIcon fontSize="small" onClick={AddLikes} 
+                            style={{ color: arrayLike.includes(user.uid) ? 'var(--twitter-color)' : 'black'}}
+                        />
+                        <p id='likesAmount'>{arrayLike.length}</p>
+                    </div>
                     <PublishIcon fontSize="small" />
                     <Button type="button" onClick={deleteTweet}><DeleteIcon fontSize="small" /></Button>
-                    {/* <Button onClick={deleteTweet}><DeleteIcon fontSize="small" /></Button> */}
                 </div>
             </div>
         </div>

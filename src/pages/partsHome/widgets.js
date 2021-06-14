@@ -15,7 +15,8 @@ function Widgets() {
 
     return (
         <div className="widgets">
-            <h2>Актуальные темы и Вам могут понравится???????</h2>
+            <h2>Твиттер</h2>
+            <div>это одно из лучших социальных медиа и источник информации о событиях в мире</div>
 
             <InputBase className={classes.search}
                 type="search" fullWidth

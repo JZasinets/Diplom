@@ -19,6 +19,7 @@
 .post__footer {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-top: 10px;
 }
 
@@ -50,4 +51,15 @@
 
 .post__avatar {
     padding: 10px;
+}
+
+.likes {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+#likesAmount {
+    margin-left: 5px;
 }

@@ -31,6 +31,7 @@ function Feed() {
                 avatar={post.avatar}
                 image={post.image}
                 key={post.id}
+                editId={post.editId}
                 id={post.id}
                 arrayLike={post.arrayLike}
             />
