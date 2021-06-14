@@ -93,7 +93,7 @@ function Post({ displayName, userName, verified, text, image, avatar, id, arrayL
             <div className="post__body">
                 <div className="post__header">
                     <div className="post__headerText">
-                        <h3>{displayName}{" "}
+                        <h3 className="headerTwit">{displayName}{" "}
                             <span className="post__headerSpecial">
                                 {verified && <VerifiedUserIcon className="post__badge" />}
                                 @{userName}

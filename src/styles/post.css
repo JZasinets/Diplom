@@ -63,3 +63,8 @@
 #likesAmount {
     margin-left: 5px;
 }
+
+.headerTwit {
+    display: flex;
+    align-items: center;
+}
