@@ -13,7 +13,6 @@ function TweetBox() {
     const [arrayLike, setArrayLike] = useState("");
     const { auth } = useContext(Context);
     const [user] = useAuthState(auth);
-    const [editId, setEditId] = useState('');
 
     const sendTweet = e => {
         e.preventDefault();
@@ -27,7 +26,6 @@ function TweetBox() {
             userId: user.uid,
             arrayLike: [],
             postId: id,
-            editId: editId,
             createAt: firebase.firestore.FieldValue.serverTimestamp(),
             avatar: "https://www.meme-arsenal.com/memes/c6c1a140ac1e472bf48bd6022e691237.jpg"
         });

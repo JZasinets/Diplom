@@ -33,7 +33,7 @@ function Post({ displayName, userName, verified, text, image, avatar, id, arrayL
                 .get()
             const twits = docs.map(doc => ({ ...doc.data(), id: doc.id }))
             dispatch({ type: 'GET_POSTS', data: twits })
-            // console.log(twits)
+            console.log(twits)
 
 
         } catch (e) {
@@ -55,15 +55,14 @@ function Post({ displayName, userName, verified, text, image, avatar, id, arrayL
     }
 
     const handleEdit = async () => {
+        console.log(text)
         try {
-            await db.collection("posts").doc(editId).update({
+            await db.collection("posts").doc(id).update({
                 text: text
             })
             await getData()
         } catch (e) {
             console.error(e)
-        } finally {
-            // setEditId('')
         }
     }
 
@@ -83,9 +82,7 @@ function Post({ displayName, userName, verified, text, image, avatar, id, arrayL
             await getData()
         } catch (e) {
             console.error(e)
-        } finally {
-            // setEditId('')
-        }
+        } 
     }
 
     return (

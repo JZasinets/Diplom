@@ -29,9 +29,7 @@ function Feed() {
                 verified={post.verified}
                 text={post.text}
                 avatar={post.avatar}
-                image={post.image}
-                key={post.id}
-                editId={post.editId}
+                image={post.image} 
                 id={post.id}
                 arrayLike={post.arrayLike}
             />
