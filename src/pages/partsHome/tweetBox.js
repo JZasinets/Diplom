@@ -9,7 +9,7 @@ import firebase from 'firebase';
 function TweetBox() {
     const [tweetMessage, setTweetMessage] = useState("");
     const [tweetImage, setTweetImage] = useState("");
-    const [id, setId] = useState("");
+    // const [id, setId] = useState("");
     const [arrayLike, setArrayLike] = useState("");
     const { auth } = useContext(Context);
     const [user] = useAuthState(auth);

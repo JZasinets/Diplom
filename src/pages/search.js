@@ -1,6 +1,6 @@
 import React from 'react';
 import Sidebar from './partsHome/sidebar';
-import { InputBase, makeStyles } from '@material-ui/core';
+import { InputBase } from '@material-ui/core';
 import '../styles/smallPages.css';
 
 export const Search = () => {

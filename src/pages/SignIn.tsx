@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, makeStyles, Typography, FormControl, FormGroup, TextField } from '@material-ui/core';
 import TwitterIcon from '@material-ui/icons/Twitter';
-import firebase from 'firebase';
 import '../theme.ts';
 import '../styles/signIn.css';
 import ModalDialog from '../components/dialog';
